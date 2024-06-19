@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ServiceInterface name="IAuthService">
+   <package>uk.ac.le.cs.CO3102</package>
+       <superclass>
+			<class>Remote</class>
+	    </superclass>
+   <include>java.rmi.Remote</include>
+   <include>java.rmi.RemoteException</include>
+   <include>java.io.*</include>
+   <abstract_method id="authenticateUser">
+      <access>public</access>
+      <parameterList>
+         <parameter type="String">account</parameter>
+         <parameter type="String">password</parameter>
+      </parameterList>
+      <exceptions>
+         <throws>IOException</throws>
+         <throws>RemoteException</throws>
+      </exceptions>
+      <return>boolean</return>
+   </abstract_method>
+   <abstract_method id="showMessage">
+      <access>public</access>
+      <parameterList>
+         <parameter type="String">message</parameter>
+      </parameterList>
+      <return>void</return>
+   </abstract_method>
+</ServiceInterface>			
+		
