@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Election Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav {
+            width: 250px;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #222;
+            padding-top: 60px;
+            transition: 0.5s;
+            overflow-y: auto;
+        }
+
+        nav a {
+            padding: 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #555;
+        }
+
+        nav .sub-items {
+            padding-left: 15px;
+        }
+
+        main {
+            margin-left: 250px;
+            padding: 20px;
+            transition: margin-left 0.5s;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        #sidebarToggle:checked + main {
+            margin-left: 0;
+        }
+
+        #sidebarToggle:checked + main nav {
+            left: 0;
+        }
+
+        #navbarIcon {
+            order: -1;
+        }
+
+        #loginForm {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            z-index: 1000;
+        }
+
+        #loginForm label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        #loginIcon {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        #electionResults {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+    <input type="checkbox" id="sidebarToggle" style="display: none;">
+
+    <header>
+        <div id="navbarIcon">&#9733; Voting App</div>
+        <!-- <div id="loginIcon">Login</div> -->
+    </header>
+
+    <nav>
+        <a href="main.html">Home</a>
+        <a href="#">Voters</a>
+        <a href="#">Election Commission</a>
+        <div class="sub-items">
+            <a href="#">Start Election</a>
+            <a href="#">Stop Election</a>
+            <a href="election-monitor.html">Monitor Election</a>
+            <a href="election-results.html">Declare Election Result</a>
+        </div>
+        <a href="public-api.html">Public APIs</a>
+    </nav>
+
+    <main>
+        <!-- <h1>Election Results</h1> -->
+
+        <div id="electionResults"></div>
+    </main>
+
+    <footer>
+        &copy; 2023 Shangri-La Online Voting System
+    </footer>
+
+    <script>
+        const electionData = {
+            "status": "Completed",
+            "winner": "Red Party",
+            "seats": [
+                { "party": "Red Party", "seat": "3" },
+                { "party": "Blue Party", "seat": "1" },
+                { "party": "Yellow Party", "seat": "1" },
+                { "party": "Independent", "seat": "0" }
+            ]
+        };
+
+        // Display status and winner
+        const resultsDiv = document.getElementById('electionResults');
+        resultsDiv.innerHTML += `<h2>Election Results for the Valley of Shangri-La 2024</h2>`;
+        resultsDiv.innerHTML += `<p>Status: ${electionData.status}</p>`;
+        resultsDiv.innerHTML += `<p>Winner: ${electionData.winner}</p>`;
+
+        // Display seat distribution in a table
+        const table = document.createElement('table');
+        const thead = table.createTHead();
+        const tbody = table.createTBody();
+
+        const headerRow = thead.insertRow();
+        headerRow.innerHTML = '<th>Party</th><th>Seats</th>';
+
+        electionData.seats.forEach(seat => {
+            const row = tbody.insertRow();
+            row.innerHTML = `<td>${seat.party}</td><td>${seat.seat}</td>`;
+        });
+
+        resultsDiv.appendChild(table);
+
+        function closeLoginForm() {
+            const loginForm = document.getElementById('loginForm');
+            loginForm.style.display = 'none';
+        }
+
+        document.getElementById('loginIcon').addEventListener('click', function() {
+            const loginForm = document.getElementById('loginForm');
+            loginForm.style.display = 'block';
+        });
+    </script>
+
+</body>
+</html>

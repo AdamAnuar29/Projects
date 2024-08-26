@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Voting App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav {
+            width: 250px;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #222;
+            padding-top: 60px;
+            transition: 0.5s;
+            overflow-y: auto;
+        }
+
+        nav a {
+            padding: 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #555;
+        }
+
+        nav .sub-items {
+            padding-left: 15px;
+        }
+
+        main {
+            margin-left: 250px;
+            padding: 20px;
+            transition: margin-left 0.5s;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        #sidebarToggle:checked+main {
+            margin-left: 0;
+        }
+
+        #sidebarToggle:checked+main nav {
+            left: 0;
+        }
+
+        #navbarIcon {
+            order: -1;
+        }
+
+        #loginForm {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            z-index: 1000;
+        }
+
+        #loginForm label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        #loginIcon {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        #electionResults {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+
+    <input type="checkbox" id="sidebarToggle" style="display: none;">
+
+    <header>
+        <div id="navbarIcon">&#9733; Voting App</div>
+        <div id="loginIcon">Login</div>
+    </header>
+
+    <nav>
+        <a href="main.html">Home</a>
+        <a href="#">Voters</a>
+        <div class="sub-items">
+            <a href="voter-registration.html">Registration</a>
+            <a href="voter-dashboard.html">Voter dashboard</a>
+        </div>
+        <a href="#">Election Commission</a>
+        <div class="sub-items">
+            <a href="#">Start Election</a>
+            <a href="#">Stop Election</a>
+            <a href="election-monitor.html">Monitor Election</a>
+            <a href="election-results.html">Declare Election Result</a>
+        </div>
+        <a href="public-api.html">Public APIs</a>
+    </nav>
+
+    <main>
+        <h1>Welcome to the Online Voting App</h1>
+
+        <div>
+            Welcome to the Valley of Shangri-La Online Election, where your voice shapes the future! Embrace the essence
+            of democracy as we invite you to exercise your right to vote and actively participate in the democratic
+            process. In this digital election, we uphold the principles of fairness, equality, and transparency,
+            ensuring that every eligible voter has an equal opportunity to make their choice.
+        </div>
+        <br>
+        <div>
+            As a voter, your right to vote is fundamental to the democratic fabric of our community. Your vote
+            symbolizes your contribution to shaping the destiny of the Valley. To cast your vote, simply log in to our
+            secure online platform, where you'll find a user-friendly interface guiding you through the voting process.
+            Each candidate and party is presented with relevant information, enabling you to make an informed decision
+            that aligns with your values.
+        </div>
+        <br>
+        <div>
+            Your participation is crucial in fostering a thriving democratic environment. Exercise your right, let your
+            voice be heard, and be an integral part of the Valley's democratic journey. Together, we build a community
+            that reflects the diverse aspirations and visions of its inhabitants. Thank you for being an essential part
+            of the Valley of Shangri-La Online Election!
+        </div>
+        <br>
+    </main>
+
+    <footer>
+        &copy; 2023 Shangri-La Online Voting System
+    </footer>
+
+    <!-- Login Form -->
+    <div id="loginForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button onclick="closeLoginForm()">Login</button>
+    </div>
+
+    <script>
+        function closeLoginForm() {
+            const loginForm = document.getElementById('loginForm');
+            loginForm.style.display = 'none';
+        }
+
+        document.getElementById('loginIcon').addEventListener('click', function () {
+            const loginForm = document.getElementById('loginForm');
+            loginForm.style.display = 'block';
+        });
+    </script>
+
+</body>
+
+</html>

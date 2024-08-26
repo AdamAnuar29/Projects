@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voter Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav {
+            width: 250px;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #222;
+            padding-top: 60px;
+            transition: 0.5s;
+            overflow-y: auto;
+        }
+
+        nav a {
+            padding: 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #555;
+        }
+
+        nav .sub-items {
+            padding-left: 15px;
+        }
+
+        main {
+            margin-left: 250px;
+            padding: 20px;
+            transition: margin-left 0.5s;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        #sidebarToggle:checked + main {
+            margin-left: 0;
+        }
+
+        #sidebarToggle:checked + main nav {
+            left: 0;
+        }
+
+        #navbarIcon {
+            order: -1;
+        }
+
+        #loginForm {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            z-index: 1000;
+        }
+
+        #loginForm label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        #loginIcon {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        #electionResults {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        /* label {
+            display: block;
+            margin-bottom: 10px;
+        } */
+
+        /* input[type="submit"], input[type="button"] {
+            padding: 10px;
+            margin-top: 10px;
+            cursor: pointer;
+        } */
+
+        #constituencyLabel {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        input[type="submit"], input[type="button"] {
+            padding: 8px;
+            width: 45%;
+            cursor: pointer;
+        }
+
+        .error-message, .success-message {
+            color: red;
+            margin-top: 5px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <input type="checkbox" id="sidebarToggle" style="display: none;">
+
+    <header>
+        <div id="navbarIcon">&#9733; Voting App</div>
+        <!-- <div id="loginIcon">Login</div> -->
+    </header>
+
+    <nav>
+        <a href="main.html">Home</a>
+        <a href="#">Voters</a>
+        <div class="sub-items">
+            <a href="voter-registration.html">Registration</a>
+            <a href="voter-dashboard.html">Voter Dashboard</a>
+        </div>
+        <a href="#">Election Commission</a>
+        <a href="public-api.html">Public APIs</a>
+    </nav>
+
+    <main>
+        <h1>Voter Registration</h1>
+
+        <form onsubmit="return validateForm()">
+            <label for="constituency">Constituency:</label>
+            <select id="constituency" name="constituency">
+                <option value="constituency1">Shangri-la-Town</option>
+                <option value="constituency2">Northern-Kunlun-Mountain</option>
+                <option value="constituency3">Western-Shangri-la</option>
+                <option value="constituency4">Naboo-Vallery</option>
+                <option value="constituency5">New-Felucia</option>
+            </select>
+    
+            <label for="uvcCode">UVC Code:</label>
+            <input type="text" id="uvcCode" name="uvcCode" required>
+            <div id="error" class="error-message"></div>
+            <div id="success" class="success-message"></div>
+    
+            <div class="button-group">
+                <input type="submit" value="Submit">
+                <input type="button" value="Cancel" onclick="cancelForm()">
+            </div>
+        </form>
+    </main>
+
+    <footer>
+        &copy; 2023 Shangri-La Online Voting System
+    </footer>
+
+    <script>
+        // valid uvc code
+        const validUVCs = [
+            "HH64FWPE",
+            "BBMNS9ZJ",
+            "KYMK9PUH",
+            "WL3K3YPT",
+            "JA9WCMAS",
+            "Z93G7PN9",
+            "WPC5GEHA",
+            "RXLNLTA6",
+            "7XUFD78Y",
+            "DBP4GQBQ"
+        ];
+
+        function validateForm() {
+            const uvcCodeInput = document.getElementById('uvcCode');
+            const errorDiv = document.getElementById('error');
+            const successDiv = document.getElementById('success');
+
+            const enteredUVC = uvcCodeInput.value.toUpperCase(); // Convert to uppercase for case-insensitive comparison
+
+            if (!validUVCs.includes(enteredUVC)) {
+                errorDiv.textContent = 'Invalid UVC Code. Please enter a valid UVC Code.';
+                successDiv.textContent = '';
+                return false; // Prevent form submission
+            } else {
+                errorDiv.textContent = '';
+                successDiv.textContent = 'UVC Code is valid. Registartion successful!'
+                return true; // Allow form submission
+            }
+        }
+
+        function cancelForm() {
+            // Add any cancellation logic here
+            alert('Form canceled');
+        }
+    </script>
+
+</body>
+</html>

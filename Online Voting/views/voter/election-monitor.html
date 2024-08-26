@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Voting App</title>
+    <!-- Include Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        } */
+
+        canvas {
+            max-width: 800px;
+            margin: 20px 0;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav {
+            width: 250px;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #222;
+            padding-top: 60px;
+            transition: 0.5s;
+            overflow-y: auto;
+        }
+
+        nav a {
+            padding: 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #555;
+        }
+
+        nav .sub-items {
+            padding-left: 15px;
+        }
+
+        main {
+            margin-left: 250px;
+            padding: 20px;
+            transition: margin-left 0.5s;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        #sidebarToggle:checked + main {
+            margin-left: 0;
+        }
+
+        #sidebarToggle:checked + main nav {
+            left: 0;
+        }
+
+        #navbarIcon {
+            order: -1;
+        }
+
+        #loginForm {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            z-index: 1000;
+        }
+
+        #loginForm label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        #loginIcon {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        #electionResults {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+    <input type="checkbox" id="sidebarToggle" style="display: none;">
+
+    <header>
+        <div id="navbarIcon">&#9733; Voting App</div>
+        <!-- <div id="loginIcon">Login</div> -->
+    </header>
+
+    <nav>
+        <a href="main.html">Home</a>
+        <a href="#">Voters</a>
+        <a href="#">Election Commission</a>
+        <div class="sub-items">
+            <a href="#">Start Election</a>
+            <a href="#">Stop Election</a>
+            <a href="election-monitor.html">Monitor Election</a>
+            <a href="election-results.html">Declare Election Result</a>
+        </div>
+        <a href="public-api.html">Public APIs</a>
+    </nav>
+
+    <main>
+        <h1>Election Monitoring Dashboard</h1>
+
+        <canvas id="votingChart"></canvas>
+    </main>
+
+    <footer>
+        &copy; 2023 Shangri-La Online Voting System
+    </footer>
+
+    <script>
+        // called election results RESR API
+        // to be change to the actual URL on which the backend is deployed
+        const url = 'http://localhost:3000/gevs/electionComm/monitor';
+   
+        fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Network response was not ok: ${response.statusText}`);
+                }
+                return response.json(); // Assuming the response is JSON; adjust accordingly
+            })
+            .then(data => {
+                displayData(data);
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error.message);
+                alert('Error fetching data. Check the console for details.');
+            });
+                
+        // example of the json format 
+        // const jsonData = {
+        //     "Shangri-la-Town": [   
+        //         {"party": "Blue Party", "Voting count": 10},
+        //         {"party": "Red Party", "Voting count": 20},
+        //         {"party": "Yellow Party", "Voting count": 40},
+        //         {"party": "Independance Party", "Voting count": 100}
+        //     ],
+        //     "Northern-Kunlun-Mountain": [
+        //         {"party": "Blue Party", "Voting count": 10},
+        //         {"party": "Red Party", "Voting count": 10},
+        //         {"party": "Yellow Party", "Voting count": 20},
+        //         {"party": "Independance Party", "Voting count": 10}
+        //     ],
+        //     "Western-Shangri-la": [
+        //         {"party": "Blue Party", "Voting count": 10},
+        //         {"party": "Red Party", "Voting count": 10},
+        //         {"party": "Yellow Party", "Voting count": 30},
+        //         {"party": "Independance Party1", "Voting count": 10},
+        //         {"party": "Independance1 Party2", "Voting count": 10}
+        //     ],
+        //     "Naboo-Vallery": [
+        //         {"party": "Blue Party", "Voting count": 10},
+        //         {"party": "Red Party", "Voting count": 50},
+        //         {"party": "Yellow Party", "Voting count": 10},
+        //         {"party": "Independance Party", "Voting count": 10}
+        //     ],
+        //     "New-Felucia": [
+        //         {"party": "Blue Party", "Voting count": 10},
+        //         {"party": "Red Party", "Voting count": 30},
+        //         {"party": "Yellow Party", "Voting count": 100},
+        //         {"party": "Independance Party", "Voting count": 10}
+        //     ]
+        // };
+
+        // Extract data for the chart
+        function displayData(jsonData) {
+            const locations = Object.keys(jsonData);
+            const parties = Array.from(new Set(locations.flatMap(location => jsonData[location].map(item => item.party))));
+            const datasets = parties.map(party => ({
+                label: party,
+                data: locations.map(location => {
+                    const result = jsonData[location].find(item => item.party === party);
+                    return result ? result["Voting count"] : 0;
+                }),
+                backgroundColor: getRandomColor(),
+                borderColor: getRandomColor(),
+                borderWidth: 1
+            }));
+
+            // Create a bar chart
+            const ctx = document.getElementById('votingChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: locations,
+                    datasets: datasets
+                },
+                options: {
+                    scales: {
+                        x: { stacked: true },
+                        y: { stacked: true }
+                    }
+                }
+            });
+        }
+
+        // Function to generate a random color
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+    </script>
+
+</body>
+</html>

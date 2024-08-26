@@ -1,0 +1,119 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Public APIs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav {
+            width: 250px;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #222;
+            padding-top: 60px;
+            transition: 0.5s;
+            overflow-y: auto;
+        }
+
+        nav a {
+            padding: 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #555;
+        }
+
+        main {
+            margin-left: 250px;
+            padding: 20px;
+            transition: margin-left 0.5s;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        #sidebarToggle:checked + main {
+            margin-left: 0;
+        }
+
+        #sidebarToggle:checked + main nav {
+            left: 0;
+        }
+
+        #navbarIcon {
+            order: -1;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Public API</h1>
+    </header>
+
+    <nav>
+        <a href="main.html">Home</a>
+        <a href="#">Voters</a>
+        <a href="#">Election Commission</a>
+        <a href="public-api.html">Public APIs</a>
+    </nav>
+
+    <main>
+        <h1>Welcome to the GEVS (General Election Voting System) Open Data Rest API</h1>
+
+        <h2>REST API available</h2>
+
+        <ol>
+            <li>to obtain the electrols district's vote count</li>
+                <ul>
+                    <li>API Format: GET /gevs/constituency/northern-kunlun-mountain</li>
+                    <li>http://[server]:[port]/gevs/constituency/northern-kunlun-mountain</li>
+                    <li><u>Example:</u> http://localhost:3000/gevs/constituency/northern-kunlun-mountain</li>
+                </ul> <br>
+            <li>to obtain all the results</li>
+                <ul>
+                    <li>API Format: GET /gevs/results</li>
+                    <li><u>Example:</u> http://localhost:3000/gevs/results</li>
+                </ul>
+        </ol>
+    </main>
+
+    <footer>
+        &copy; 2023 Shangri-La Online Voting System
+    </footer>
+
+    <script>  </script>
+
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Election Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav {
+            width: 250px;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #222;
+            padding-top: 60px;
+            transition: 0.5s;
+            overflow-y: auto;
+        }
+
+        nav a {
+            padding: 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #555;
+        }
+
+        nav .sub-items {
+            padding-left: 15px;
+        }
+
+        main {
+            margin-left: 250px;
+            padding: 20px;
+            transition: margin-left 0.5s;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        #sidebarToggle:checked + main {
+            margin-left: 0;
+        }
+
+        #sidebarToggle:checked + main nav {
+            left: 0;
+        }
+
+        #navbarIcon {
+            order: -1;
+        }
+
+        #loginForm {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            z-index: 1000;
+        }
+
+        #loginForm label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        #loginIcon {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        #electionResults {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="submit"], input[type="button"] {
+            padding: 10px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        #constituencyLabel {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+    </style>
+</head>
+<body>
+
+    <input type="checkbox" id="sidebarToggle" style="display: none;">
+
+    <header>
+        <div id="navbarIcon">&#9733; Voting App</div>
+        <!-- <div id="loginIcon">Login</div> -->
+    </header>
+
+    <nav>
+        <a href="main.html">Home</a>
+        <a href="#">Voters</a>
+        <div class="sub-items">
+            <a href="voter-registration.html">Registration</a>
+            <a href="voter-dashboard.html">Voter Dashboard</a>
+        </div>
+        <a href="#">Election Commission</a>
+        <a href="public-api.html">Public APIs</a>
+    </nav>
+
+    <main>
+        <h1>Voter Dashboard</h1>
+
+        <form id="electionForm">
+        </form>
+    </main>
+
+    <footer>
+        &copy; 2023 Shangri-La Online Voting System
+    </footer>
+
+    <script>
+    // get constituency candidate list
+    const url = 'http://localhost:3000/gevs/voter/vote';
+   
+    fetch(url)
+       .then(response => {
+           if (!response.ok) {
+               throw new Error(`Network response was not ok: ${response.statusText}`);
+           }
+           return response.json(); // Assuming the response is JSON; adjust accordingly
+       })
+       .then(data => {
+           displayVoteForm(data);
+       })
+       .catch(error => {
+           console.error('Error fetching data:', error.message);
+           alert('Error fetching data. Check the console for details.');
+       });
+
+        function displayVoteForm (jsonData) {
+            // Get the form element
+            const form = document.getElementById('electionForm');
+
+            // Add constituency label
+            const constituencyLabel = document.createElement('label');
+            constituencyLabel.id = 'constituencyLabel';
+            constituencyLabel.textContent = `Constituency: ${jsonData.constituency}`;
+            form.appendChild(constituencyLabel);
+
+            // Add candidate radio buttons
+            jsonData.candidates.forEach(candidate => {
+                const candidateLabel = document.createElement('label');
+                const candidateRadio = document.createElement('input');
+                candidateRadio.type = 'radio';
+                candidateRadio.name = 'candidate';
+                candidateRadio.value = candidate.party; // Can customize the value as needed
+
+                candidateLabel.appendChild(candidateRadio);
+                candidateLabel.appendChild(document.createTextNode(` ${candidate.name} (${candidate.party})`));
+                form.appendChild(candidateLabel);
+            });
+
+            // Add submit and cancel buttons
+            const submitButton = document.createElement('input');
+            submitButton.type = 'submit';
+            submitButton.value = 'Submit';
+            form.appendChild(submitButton);
+
+            const cancelButton = document.createElement('input');
+            cancelButton.type = 'button';
+            cancelButton.value = 'Cancel';
+            cancelButton.onclick = cancelForm;
+            form.appendChild(cancelButton);
+        }
+
+        function cancelForm() {
+            // Add any cancellation logic here
+            alert('Form canceled');
+        }
+    </script>
+
+</body>
+</html>
