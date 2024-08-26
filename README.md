@@ -10,6 +10,10 @@
 - An Artificial Intelligence project that uses the Caar-Cascade algorithm to identify Signs, face and eyes.
 
 4. Online Voting
-- 
+- A web application the online voting platform where a Voter can register, login & votes, election comminssion officer can start/stop election, monitor the election status & declare the winner and public/media to get realtime update and result via a REST API
+- The website is created with sqlite, expressjs and nodejs
+
+5. XML to JSON
+- The program takes an XML file and parse it into a JSON file
 
 
