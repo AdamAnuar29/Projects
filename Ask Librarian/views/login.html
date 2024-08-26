@@ -1,0 +1,163 @@
+<!-- login.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            display: flex;
+            min-height: 100vh;
+            justify-content: center;
+            align-items: center;
+        }
+        .form-container {
+            width: 300px;
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .form-container h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        .form-container form label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-container form input[type="text"],
+        .form-container form input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        .form-container form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #444;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .form-container form button:hover {
+            background-color: #333;
+        }
+        .switch-form {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .switch-form a {
+            color: #444;
+            text-decoration: none;
+        }
+        .switch-form a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="form-container">
+        <div id="loginForm">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password">
+                <button type="button" onclick="login()">Login</button>
+            </form>
+            <div class="switch-form">
+                <p>Don't have an account? <a href="#" onclick="switchForm()">Register here</a>.</p>
+            </div>
+        </div>
+
+        <div id="registerForm" style="display:none;">
+            <h2>Register</h2>
+            <form id="registerForm">
+                <label for="regUsername">Username:</label>
+                <input type="text" id="regUsername" name="regUsername">
+                <label for="regPassword">Password:</label>
+                <input type="password" id="regPassword" name="regPassword">
+                <button type="button" onclick="register()">Register</button>
+            </form>
+            <div class="switch-form">
+                <p>Already have an account? <a href="#" onclick="switchForm()">Login here</a>.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function switchForm() {
+        var loginForm = document.getElementById("loginForm");
+        var registerForm = document.getElementById("registerForm");
+
+        if (loginForm.style.display === "none") {
+            loginForm.style.display = "block";
+            registerForm.style.display = "none";
+        } else {
+            loginForm.style.display = "none";
+            registerForm.style.display = "block";
+        }
+    }
+
+    function login() {
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+
+        fetch('http://localhost:3000/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username: username, password: password }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            // Handle response, e.g., redirect to dashboard or display message
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }
+
+    function register() {
+        var regUsername = document.getElementById("regUsername").value;
+        var regPassword = document.getElementById("regPassword").value;
+
+        fetch('http://localhost:3000/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username: regUsername, password: regPassword }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            // Handle response, e.g., redirect to login or display message
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }
+</script>
+
+</body>
+</html>

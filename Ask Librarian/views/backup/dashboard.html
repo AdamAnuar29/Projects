@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .row {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 50px;
+        }
+
+        .chart-container {
+            width: 45%;
+            padding: 20px;
+            border: 2px solid #174793; /* Dark blue border */
+            border-radius: 10px;
+            margin: 10px; /* Gap between charts */
+            position: relative;
+        }
+
+        .small-chart {
+            height: 75% !important;
+            width: 75% !important;
+        }
+
+        .chart-title {
+            text-align: center;
+        }
+
+        .number-box {
+            width: 200px;
+            padding: 20px;
+            border: 2px solid #79a4e9; /* Dark blue border */
+            border-radius: 10px;
+            margin: 10px; /* Gap between boxes */
+            text-align: center;
+            background-color: rgba(44, 36, 203, 0.5); /* Semi-transparent blue background */
+            color: #fff; /* White text color */
+        }
+
+        .box-icon {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .number-text {
+            font-size: 24px;
+            font-weight: bold;
+            font-family: 'Arial Black', sans-serif;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 20px;
+            grid-column: 1 / -1; /* Span all columns */
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1 class="title"> University of Leicester Library Analytics Dashboard</h1>
+
+<div class="row">
+    <div class="chart-container">
+        <h2 class="chart-title">Top 10 Books</h2>
+        <canvas id="bookChart"></canvas>
+    </div>
+    <div class="chart-container">
+        <h2 class="chart-title">Top 10 Students</h2>
+        <canvas id="studentChart"></canvas>
+    </div>
+</div>
+
+<div class="row">
+    <div class="chart-container">
+        <h2 class="chart-title">Book Classification by Field</h2>
+        <canvas id="bookPieChart" class="small-chart"></canvas>
+    </div>
+    <div class="chart-container">
+        <h2 class="chart-title">Students by Faculty</h2>
+        <canvas id="studentPieChart" class="small-chart"></canvas>
+    </div>
+</div>
+
+<div class="row">
+    <div class="number-box">
+        <i class="fas fa-book box-icon"></i>
+        <div class="number-text">120</div>
+        <div>Issues</div>
+    </div>
+    <div class="number-box">
+        <i class="fas fa-user-check box-icon"></i>
+        <div class="number-text">85</div>
+        <div>Borrowed</div>
+    </div>
+    <div class="number-box">
+        <i class="fas fa-user-times box-icon"></i>
+        <div class="number-text">35</div>
+        <div>Not Returned</div>
+    </div>
+    <div class="number-box">
+        <i class="far fa-calendar-alt box-icon"></i>
+        <div class="number-text">2024-04-27</div>
+        <div>Date Today</div>
+    </div>
+</div>
+
+<script>
+    // Data for bar charts
+    const bookData = {
+        labels: ['Book 1', 'Book 2', 'Book 3', 'Book 4', 'Book 5', 'Book 6', 'Book 7', 'Book 8', 'Book 9', 'Book 10'],
+        datasets: [{
+            label: 'Books',
+            data: [50, 45, 60, 55, 70, 65, 80, 75, 90, 85],
+            backgroundColor: 'rgba(54, 162, 235, 0.5)' // Single color for all bars
+        }]
+    };
+
+    const studentData = {
+        labels: ['Student 1', 'Student 2', 'Student 3', 'Student 4', 'Student 5', 'Student 6', 'Student 7', 'Student 8', 'Student 9', 'Student 10'],
+        datasets: [{
+            label: 'Students',
+            data: [80, 75, 90, 85, 70, 65, 50, 55, 40, 45],
+            backgroundColor: 'rgba(54, 162, 235, 0.5)' // Single color for all bars
+        }]
+    };
+
+    // Data for pie charts
+    const bookPieData = {
+        labels: ['Science', 'Literature', 'History', 'Math', 'Art'],
+        datasets: [{
+            data: [30, 20, 15, 25, 10],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.5)',
+                'rgba(54, 162, 235, 0.5)',
+                'rgba(255, 206, 86, 0.5)',
+                'rgba(75, 192, 192, 0.5)',
+                'rgba(153, 102, 255, 0.5)'
+            ]
+        }]
+    };
+
+    const studentPieData = {
+        labels: ['Engineering', 'Arts', 'Science', 'Business', 'Medicine'],
+        datasets: [{
+            data: [25, 20, 30, 15, 10],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.5)',
+                'rgba(54, 162, 235, 0.5)',
+                'rgba(255, 206, 86, 0.5)',
+                'rgba(75, 192, 192, 0.5)',
+                'rgba(153, 102, 255, 0.5)'
+            ]
+        }]
+    };
+
+    // Initialize bar charts
+    const bookChart = new Chart(document.getElementById('bookChart'), {
+        type: 'bar',
+        data: bookData,
+        options: {
+            plugins: {
+                title: {
+                    display: false
+                }
+            }
+        }
+    });
+
+    const studentChart = new Chart(document.getElementById('studentChart'), {
+        type: 'bar',
+        data: studentData,
+        options: {
+            plugins: {
+                title: {
+                    display: false
+                }
+            }
+        }
+    });
+
+    // Initialize pie charts
+    const bookPieChart = new Chart(document.getElementById('bookPieChart'), {
+        type: 'pie',
+        data: bookPieData,
+        options: {
+            plugins: {
+                title: {
+                    display: false
+                }
+            }
+        }
+    });
+
+    const studentPieChart = new Chart(document.getElementById('studentPieChart'), {
+        type: 'pie',
+        data: studentPieData,
+        options: {
+            plugins: {
+                title: {
+                    display: false
+                }
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Please enter book information</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #e4042c;
+            color: #fff;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 50px; /* Half the original height */
+        }
+
+        nav {
+            background-color: #fff;
+            float: left;
+            width: 200px;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            padding: 10px;
+        }
+
+        nav ul li a {
+            color: #000; /* Changed to black */
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul li a i {
+            margin-right: 10px;
+            color: #000; /* Changed to black */
+        }
+
+        nav ul li a span {
+            margin-left: 5px; /* Margin between icon and text */
+            color: #000; /* Changed to black */
+        }
+
+        nav ul li a:hover {
+            background-color: #777;
+        }
+
+        main {
+            margin-left: 200px; /* Same width as nav */
+            padding: 20px;
+        }
+
+        footer {
+            background-color:#e4042c;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            clear: both;
+            height: 50px; /* Half the original height */
+        }
+
+        form {
+            margin: 20px auto;
+            max-width: 500px;
+            text-align: center; /* Center align the form */
+        }
+
+        h1 {
+            text-align: center; /* Center align the title */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            text-align: right;
+            width: 40%;
+            float: left;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 50%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"],
+        input[type="button"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px; /* Add some gap between buttons */
+        }
+
+        input[type="submit"]:hover,
+        input[type="button"]:hover {
+            background-color: #45a049;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px; /* Add space between buttons and form */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <img src="../public/Leicester.png" alt="University_of_Leicester">
+        </div>
+        <div class="user-info">
+            <div>
+                <i class="fas fa-user-circle user-icon"></i>
+                Muhammad Adam
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="home.html" id="homeLink"><i class="fas fa-home"></i><span>Home</span></a></li>
+            <li><a href="student.html" id="studentLink"><i class="fas fa-user-graduate"></i><span>Student Analytic</span></a></li>   
+            <li><a href="facility.html" id="facilityLink"><i class="fas fa-landmark"></i><span>Facility Analytic</span></a></li>
+            <li><a href="book.html" id="bookLink"><i class="fas fa-book"></i><span>Books</span></a></li>
+            <li><a href="magazine.html" id="magazineLink"><i class="fas fa-book-reader"></i><span>Magazines</span></a></li>
+            <li><a href="journal.html" id="journalLink"><i class="fas fa-book-open"></i><span>Journals</span></a></li>
+            <li><a href="newpaper.html" id="newspaperLink"><i class="fas fa-newspaper"></i><span>Newspapers</span></a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h1>Please enter book information</h1>
+        <form id="bookForm" onsubmit="return createTextFile()">
+            <label for="bookId">BookId:</label>
+            <input type="text" id="bookId" name="bookId" required>
+
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required>
+
+            <label for="author">Author:</label>
+            <input type="text" id="author" name="author" required>
+
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" required></textarea>
+
+            <label for="language">Language:</label>
+            <input type="text" id="language" name="language" required>
+
+            <label for="subject">Subject:</label>
+            <input type="text" id="subject" name="subject" required>
+
+            <label for="pageNo">Page No:</label>
+            <input type="text" id="pageNo" name="pageNo" required>
+
+            <div class="button-container">
+                <input type="submit" value="Submit">
+                <input type="button" value="Cancel">
+            </div>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 University of Leicester Library Management System</p>
+    </footer>
+
+    <script>
+        function createTextFile() {
+            var bookId = document.getElementById("bookId").value;
+            var title = document.getElementById("title").value;
+            var author = document.getElementById("author").value;
+            var description = document.getElementById("description").value;
+            var language = document.getElementById("language").value;
+            var subject = document.getElementById("subject").value;
+            var pageNo = document.getElementById("pageNo").value;
+            
+            var content = "Book ID: " + bookId + "\n" +
+                          "Title: " + title + "\n" +
+                          "Author: " + author + "\n" +
+                          "Description: " + description + "\n" +
+                          "Language: " + language + "\n" +
+                          "Subject: " + subject + "\n" +
+                          "Page No: " + pageNo;
+            
+            var fileName = bookId + ".txt";
+            var blob = new Blob([content], {type: "text/plain;charset=utf-8"});
+            saveAs(blob, fileName);
+            
+            alert("Successful create " + fileName);
+            return false; // prevent form submission
+        }
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0; /* Very light grey background */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .box {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .box-icon {
+            font-size: 36px;
+            margin-bottom: 10px;
+            color: #3498db; /* Icon color */
+        }
+
+        .box-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .book-info {
+            margin-bottom: 10px;
+        }
+
+        .book-info strong {
+            font-weight: bold;
+        }
+
+        .book-info:last-child {
+            margin-bottom: 0;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 20px;
+            grid-column: 1 / -1; /* Span all columns */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Books by Field of Study</h1>
+
+        <div class="box">
+            <div class="box-icon">
+                <i class="fas fa-book"></i>
+            </div>
+            <div class="box-title">Computer Science</div>
+            <div class="book-info">
+                <strong>Title:</strong> Clean Code: A Handbook of Agile Software Craftsmanship<br>
+                <strong>Author:</strong> Robert C. Martin<br>
+                <strong>Publish Date:</strong> August 11, 2008<br>
+                <strong>Status:</strong> Available
+            </div>
+            <div class="book-info">
+                <strong>Title:</strong> The Pragmatic Programmer: Your Journey to Mastery<br>
+                <strong>Author:</strong> Andrew Hunt, David Thomas<br>
+                <strong>Publish Date:</strong> October 30, 1999<br>
+                <strong>Status:</strong> Available
+            </div>
+            <div class="book-info">
+                <strong>Title:</strong> Design Patterns: Elements of Reusable Object-Oriented Software<br>
+                <strong>Author:</strong> Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides<br>
+                <strong>Publish Date:</strong> November 10, 1994<br>
+                <strong>Status:</strong> Available
+            </div>
+            <div class="book-info">
+                <strong>Title:</strong> Introduction to Algorithms<br>
+                <strong>Author:</strong> Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein<br>
+                <strong>Publish Date:</strong> July 31, 2009<br>
+                <strong>Status:</strong> Checkout
+            </div>
+        </div>
+        <div class="box">
+            <div class="box-icon">
+                <i class="fas fa-flask"></i>
+            </div>
+            <div class="box-title">Science</div>
+            <!-- Add book information here -->
+            <div class="book-info">
+                <strong>Title:</strong> Sapiens: A Brief History of Humankind<br>
+                <strong>Author:</strong> Yuval Noah Harari<br>
+                <strong>Publish Date:</strong> February 10, 2015<br>
+                <strong>Status:</strong> Available<br>
+            </div>
+        </div>
+
+        <div class="box">
+            <div class="box-icon">
+                <i class="fas fa-microscope"></i>
+            </div>
+            <div class="box-title">Medicine</div>
+            <!-- Add book information here -->
+            <div class="book-info">
+                <strong>Title:</strong> The Emperor of All Maladies: A Biography of Cancer<br>
+                <strong>Author:</strong> Siddhartha Mukherjee<br>
+                <strong>Publish Date:</strong> November 16, 2010<br>
+                <strong>Status:</strong> Available<br>
+            </div>
+        </div>
+
+        <div class="box">
+            <div class="box-icon">
+                <i class="fas fa-globe"></i>
+            </div>
+            <div class="box-title">Geography</div>
+            <!-- Add book information here -->
+            <div class="book-info">
+                <strong>Title:</strong> Prisoners of Geography: Ten Maps That Tell You Everything You Need to Know About Global Politics<br>
+                <strong>Author:</strong> Tim Marshall<br>
+                <strong>Publish Date:</strong> October 27, 2015<br>
+                <strong>Status:</strong> Available<br>
+            </div>
+        </div>
+        <div class="box">
+            <div class="box-icon">
+                <i class="fas fa-language"></i>
+            </div>
+            <div class="box-title">Languages</div>
+            <!-- Add book information here -->
+            <div class="book-info">
+                <div class="box-title">Languages</div>
+                <strong>Title:</strong> Fluent Python: Clear, Concise, and Effective Programming<br>
+                <strong>Author:</strong> Luciano Ramalho<br>
+                <strong>Publish Date:</strong> July 30, 2015<br>
+                <strong>Status:</strong> Available<br>
+            </div>
+        </div>
+        <div class="box">
+            <div class="box-icon">
+                <i class="fas fa-history"></i>
+            </div>
+            <div class="box-title">History</div>
+            <!-- Add book information here -->
+            <div class="book-info">
+                <div class="box-title">History</div>
+                <strong>Title:</strong> Guns, Germs, and Steel: The Fates of Human Societies<br>
+                <strong>Author:</strong> Jared Diamond<br>
+                <strong>Publish Date:</strong> March 1, 1997<br>
+                <strong>Status:</strong> Available<br>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #e4042c;
+            color: #fff;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 50px; /* Half the original height */
+        }
+
+        nav {
+            background-color: #fff;
+            float: left;
+            width: 200px;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            padding: 10px;
+        }
+
+        nav ul li a {
+            color: #000; /* Changed to black */
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul li a i {
+            margin-right: 10px;
+            color: #000; /* Changed to black */
+        }
+
+        nav ul li a span {
+            margin-left: 5px; /* Margin between icon and text */
+            color: #000; /* Changed to black */
+        }
+
+        nav ul li a:hover {
+            background-color: #777;
+        }
+
+        main {
+            margin-left: 200px; /* Same width as nav */
+            padding: 20px;
+        }
+
+        footer {
+            background-color:#e4042c;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            clear: both;
+            height: 50px; /* Half the original height */
+        }
+
+        #dashboardObject, #homeObject, #bookObject, #journalObject, #newspaperObject, #magazineObject, #studentObject, #facilityObject, #book_entryObject {
+            width: 100%;
+            height: calc(100vh - 50px); /* Full height minus header */
+            border: none;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-info img {
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        .user-info .user-icon {
+            font-size: 24px;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <img  src="../public/Leicester.png" alt="University_of_Leicester">
+        </div>
+        <div class="user-info">
+            <div>
+                <i class="fas fa-user-circle user-icon"></i>
+                Muhammad Adam
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="home.html" id="homeLink"><i class="fas fa-home"></i><span>Home</span></a></li>
+            <!-- <li><a href="dashboard.html" id="dashboardLink"><i class="fas fa-tachometer-alt"></i><span>Dashboard Analytic</span></a></li> -->
+            <li><a href="student.html" id="studentLink"><i class="fas fa-user-graduate"></i><span>Student Analytic</span></a></li>   
+            <li><a href="facility.html" id="facilityLink"><i class="fas fa-landmark"></i><span>Facility Analytic</span></a></li>
+            <li><a href="book.html" id="bookLink"><i class="fas fa-book"></i><span>Books</span></a></li>
+            <li><a href="magazine.html" id="magazineLink"><i class="fas fa-book-reader"></i><span>Magazines</span></a></li>
+            <li><a href="journal.html" id="journalLink"><i class="fas fa-book-open"></i><span>Journals</span></a></li>
+            <li><a href="newpaper.html" id="newspaperLink"><i class="fas fa-newspaper"></i><span>Newspapers</span></a></li>
+            <li><a href="book_entry.html" id="book_entryLink"><i class="fas fa-folder-open"></i><span>Data Entry</span></a></li>
+        </ul>
+    </nav>
+
+    <main id="mainContent">
+        <!-- Default content loaded from home.html will be displayed here -->
+    </main>
+
+    <footer>
+        <p>&copy; 2024 University of Leicester Library Management System</p>
+
+        <!-- PUT THE CHATBOAT AGENT HERE -->
+        <!-- <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
+        <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
+        <df-messenger
+          project-id="sonic-potion-407306"
+          agent-id="ba3c3982-1700-4144-9442-24f878eca723"
+          language-code="en">
+          <df-messenger-chat-bubble
+           chat-title="unilibrary">
+          </df-messenger-chat-bubble>
+        </df-messenger>
+        <style>
+          df-messenger {
+            z-index: 999;
+            position: fixed;
+            bottom: 16px;
+            right: 16px;
+          }
+        </style> -->
+<!-- <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
+<script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
+<df-messenger
+  location="us-central1"
+  project-id="libraryai-407620"
+  agent-id="95e58045-c4a1-40ca-9023-49a7cb6d90d4"
+  language-code="en"
+  max-query-length="-1">
+  <df-messenger-chat-bubble
+   chat-title="">
+  </df-messenger-chat-bubble>
+</df-messenger>
+<style>
+  df-messenger {
+    z-index: 999;
+    position: fixed;
+    --df-messenger-font-color: #000;
+    --df-messenger-font-family: Google Sans;
+    --df-messenger-chat-background: #f3f6fc;
+    --df-messenger-message-user-background: #d3e3fd;
+    --df-messenger-message-bot-background: #fff;
+    bottom: 16px;
+    right: 16px;
+  }
+</style> -->
+
+<link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
+<script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
+<df-messenger
+  location="us-central1"
+  project-id="libraryai-407620"
+  agent-id="95e58045-c4a1-40ca-9023-49a7cb6d90d4"
+  language-code="en"
+  max-query-length="-1">
+  <df-messenger-chat-bubble
+   chat-title="Library Virtual Agent">
+  </df-messenger-chat-bubble>
+</df-messenger>
+<style>
+  df-messenger {
+    z-index: 999;
+    position: fixed;
+    --df-messenger-font-color: #000;
+    --df-messenger-font-family: Google Sans;
+    --df-messenger-chat-background: #f3f6fc;
+    --df-messenger-message-user-background: #d3e3fd;
+    --df-messenger-message-bot-background: #fff;
+    bottom: 16px;
+    right: 16px;
+  }
+</style>
+
+    </footer>
+
+    <script>
+        // Function to load default content from home.html
+        function loadDefaultContent() {
+            document.getElementById('mainContent').innerHTML = '<object id="homeObject" type="text/html" data="home.html"></object>';
+        }
+
+        // Load default content when the page loads
+        window.onload = loadDefaultContent();
+
+        // document.getElementById('dashboardLink').addEventListener('click', function(event) {
+        //     event.preventDefault();
+        //     document.getElementById('mainContent').innerHTML = '<object id="dashboardObject" type="text/html" data="dashboard.html"></object>';
+        // });
+
+        document.getElementById('bookLink').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('mainContent').innerHTML = '<object id="bookObject" type="text/html" data="book.html"></object>';
+        });
+
+        document.getElementById('magazineLink').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('mainContent').innerHTML = '<object id="magazineObject" type="text/html" data="magazine.html"></object>';
+        });
+
+        document.getElementById('journalLink').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('mainContent').innerHTML = '<object id="journalObject" type="text/html" data="journal.html"></object>';
+        });
+
+        document.getElementById('newspaperLink').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('mainContent').innerHTML = '<object id="newspaperObject" type="text/html" data="newspaper.html"></object>';
+        });
+
+        document.getElementById('studentLink').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('mainContent').innerHTML = '<object id="studentObject" type="text/html" data="student.html"></object>';
+        });
+        
+        document.getElementById('facilityLink').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('mainContent').innerHTML = '<object id="facilityObject" type="text/html" data="facility.html"></object>';
+        });
+
+        document.getElementById('book_entryLink').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('mainContent').innerHTML = '<object id="book_entryObject" type="text/html" data="book_entry.html"></object>';
+        });
+
+
+        document.getElementById('homeLink').addEventListener('click', function(event) {
+            event.preventDefault();
+            loadDefaultContent(); // Load default content from home.html
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+{
+  "name": "onlinevoting",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "libStart": "nodemon lib_server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2",
+    "md5": "^2.3.0",
+    "nodemon": "^3.1.0",
+    "sqlite3": "^5.1.7-rc.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0"
+  }
+}

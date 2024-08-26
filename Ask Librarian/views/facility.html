@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Facility Statistics</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0; /* Very light grey background */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Added one more column */
+            gap: 20px;
+        }
+
+        .box {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative; /* Added position relative */
+            width: 100%; /* Adjusted width */
+        }
+
+        .box-icon {
+            font-size: 36px;
+            margin-bottom: 10px;
+            color: #3498db; /* Icon color */
+        }
+
+        .box-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .box-text {
+            color: #666;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 20px;
+            grid-column: 1 / -1; /* Span all columns */
+        }
+
+        .row {
+            grid-column: 1 / -1; /* Span all columns */
+        }
+
+        canvas {
+            max-width: 100%;
+            width: calc(100% - 40px); /* Adjusted width */
+            max-height: 55%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Analyzing Library Facility Usage</h1>
+
+        <div class="box">
+            <div class="box-icon">
+                <i class="fas fa-door-open"></i>
+            </div>
+            <div class="box-title">Discussion Rooms</div>
+            <div class="box-text">Total Rooms: 10</div>
+            <div class="box-text">Occupancy Rate: 80%</div>
+            <div class="box-text">Average Usage per Day: 6 hours</div>
+        </div>
+
+        <div class="box">
+            <div class="box-icon">
+                <i class="fas fa-desktop"></i>
+            </div>
+            <div class="box-title">Computer Workstations</div>
+            <div class="box-text">Total Workstations: 50</div>
+            <div class="box-text">Occupancy Rate: 60%</div>
+            <div class="box-text">Average Usage per Day: 8 hours</div>
+        </div>
+
+        <div class="box">
+            <div class="box-icon">
+                <i class="fas fa-book-reader"></i>
+            </div>
+            <div class="box-title">Reading Areas</div>
+            <div class="box-text">Total Seats: 100</div>
+            <div class="box-text">Occupancy Rate: 70%</div>
+            <div class="box-text">Average Usage per Day: 10 hours</div>
+        </div>
+
+        <div class="row">
+            <div class="box">
+                <div class="box-icon">
+                    <i class="fas fa-coffee"></i>
+                </div>
+                <div class="box-title">Cafeteria</div>
+                <div class="box-text">Total Tables: 20</div>
+                <div class="box-text">Occupancy Rate: 50%</div>
+                <div class="box-text">Average Usage per Day: 4 hours</div>
+                <canvas id="cafeteriaChart"></canvas> <!-- Chart canvas -->
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="box">
+                <div class="box-icon">
+                    <i class="fas fa-microphone"></i>
+                </div>
+                <div class="box-title">Conference Rooms</div>
+                <div class="box-text">Total Rooms: 5</div>
+                <div class="box-text">Occupancy Rate: 70%</div>
+                <div class="box-text">Average Usage per Day: 7 hours</div>
+                <canvas id="conferenceChart"></canvas> <!-- Chart canvas -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Chart data
+        const cafeteriaData = {
+            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            datasets: [{
+                label: 'Usage Trend',
+                data: [30, 40, 35, 45, 50, 40, 35],
+                backgroundColor: 'rgba(52, 152, 219, 0.5)',
+                borderColor: 'rgba(52, 152, 219, 1)',
+                borderWidth: 1
+            }]
+        };
+
+        const conferenceData = {
+            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            datasets: [{
+                label: 'Usage Trend',
+                data: [20, 25, 20, 35, 20, 45, 50],
+                backgroundColor: 'rgba(46, 204, 113, 0.5)',
+                borderColor: 'rgba(46, 204, 113, 1)',
+                borderWidth: 1
+            }]
+        };
+
+        // Chart options
+        const chartOptions = {
+            responsive: true,
+            maintainAspectRatio: false
+        };
+
+        // Create cafeteria chart
+        const cafeteriaCtx = document.getElementById('cafeteriaChart').getContext('2d');
+        new Chart(cafeteriaCtx, {
+            type: 'line',
+            data: cafeteriaData,
+            options: chartOptions
+        });
+
+        // Create conference rooms chart
+        const conferenceCtx = document.getElementById('conferenceChart').getContext('2d');
+        new Chart(conferenceCtx, {
+            type: 'line',
+            data: conferenceData,
+            options: chartOptions
+        });
+    </script>
+</body>
+</html>

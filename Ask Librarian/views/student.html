@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Statistics</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0; /* Very light grey background */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .box {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .box-icon {
+            font-size: 36px;
+            margin-bottom: 10px;
+            color: #3498db; /* Icon color */
+        }
+
+        .box-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .statistic-info {
+            margin-bottom: 10px;
+        }
+
+        .statistic-info strong {
+            font-weight: bold;
+        }
+
+        .statistic-info:last-child {
+            margin-bottom: 0;
+        }
+
+        .chart-container {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 20px;
+            grid-column: 1 / -1; /* Span all columns */
+        }
+
+        .row {
+            grid-column: 1 / -1; /* Span all columns */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Analyzing Student Library Usage</h1>
+
+        <div class="box">
+            <div class="box-icon">
+                <i class="fas fa-chart-pie"></i>
+            </div>
+            <div class="box-title">Student Usage Overview</div>
+            <div class="statistic-info">
+                <strong>Total Students Registered:</strong> 1500
+            </div>
+            <div class="statistic-info">
+                <strong>Students Visited Library Today:</strong> 300
+            </div>
+            <div class="statistic-info">
+                <strong>Students Borrowed Books Today:</strong> 100
+            </div>
+            <div class="chart-container">
+                <canvas id="usageChart"></canvas>
+            </div>
+        </div>
+
+        <div class="box">
+            <div class="box-icon">
+                <i class="fas fa-chart-bar"></i>
+            </div>
+            <div class="box-title">Student Demographics</div>
+            <div class="statistic-info">
+                <strong>Undergraduate Students:</strong> 1000
+            </div>
+            <div class="statistic-info">
+                <strong>Postgraduate Students:</strong> 500
+            </div>
+            <div class="statistic-info">
+                <strong>International Students:</strong> 200
+            </div>
+            <div class="chart-container">
+                <canvas id="demographicsChart"></canvas>
+            </div>
+        </div>
+
+        <div class="box">
+            <div class="box-icon">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="box-title">Usage Trends</div>
+            <div class="statistic-info">
+                <strong>Monthly Visits:</strong> 
+                <ul>
+                    <li>January: 1000</li>
+                    <li>February: 1200</li>
+                    <li>March: 1300</li>
+                    <!-- and so on... -->
+                </ul>
+            </div>
+            <div class="statistic-info">
+                <strong>Most Visited Days:</strong> Monday, Wednesday, Friday
+            </div>
+            <div class="chart-container">
+                <canvas id="trendsChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Usage Overview Pie Chart
+        var usageData = {
+            labels: ['Visitors Today', 'Borrowers Today', 'Other'],
+            datasets: [{
+                data: [300, 100, 1100],
+                backgroundColor: ['#3498db', '#2ecc71', '#95a5a6'],
+                borderColor: ['#2980b9', '#27ae60', '#7f8c8d'],
+                borderWidth: 1
+            }]
+        };
+
+        var usageChart = new Chart(document.getElementById('usageChart'), {
+            type: 'pie',
+            data: usageData,
+            options: {
+                responsive: true
+            }
+        });
+
+        // Demographics Bar Chart
+        var demographicsData = {
+            labels: ['Undergraduate', 'Postgraduate', 'International'],
+            datasets: [{
+                label: 'Number of Students',
+                data: [1000, 500, 200],
+                backgroundColor: ['#3498db', '#9b59b6', '#f1c40f'],
+                borderColor: ['#2980b9', '#8e44ad', '#f39c12'],
+                borderWidth: 1
+            }]
+        };
+
+        var demographicsChart = new Chart(document.getElementById('demographicsChart'), {
+            type: 'bar',
+            data: demographicsData,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                responsive: true
+            }
+        });
+
+        // Usage Trends Line Chart
+        var trendsData = {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+            datasets: [{
+                label: 'Monthly Visits',
+                data: [1000, 1200, 1300, 1100, 1400, 1250],
+                borderColor: '#3498db',
+                backgroundColor: 'transparent',
+                borderWidth: 2
+            }]
+        };
+
+        var trendsChart = new Chart(document.getElementById('trendsChart'), {
+            type: 'line',
+            data: trendsData,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                responsive: true
+            }
+        });
+    </script>
+</body>
+</html>

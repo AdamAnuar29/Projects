@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Entry</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0; /* Very light grey background */
+        }
+
+        form {
+            margin: 20px auto;
+            max-width: 1000px;
+            text-align: center; /* Center align the form */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            text-align: right;
+            width: 40%;
+            float: left;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 50%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"],
+        input[type="button"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px; /* Add some gap between buttons */
+        }
+
+        input[type="submit"]:hover,
+        input[type="button"]:hover {
+            background-color: #45a049;
+        }
+        .container {
+            max-width: 1000px; 
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .box {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .box-icon {
+            font-size: 36px;
+            margin-bottom: 10px;
+            color: #3498db; /* Icon color */
+        }
+
+        .box-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .box-text {
+            color: #666;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 20px;
+            grid-column: 1 / -1; /* Span all columns */
+        }
+
+        .row {
+            grid-column: 1 / -1; /* Span all columns */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Enter book description to generate a text file for a Book Inquiry Chatbot</h1>
+
+        <div class="row">
+            <div class="box">
+                <main>
+                    <form id="bookForm" onsubmit="return createTextFile()">
+                        <label for="bookId">BookId:</label>
+                        <input type="text" id="bookId" name="bookId" required>
+            
+                        <label for="title">Title:</label>
+                        <input type="text" id="title" name="title" required>
+            
+                        <label for="author">Author:</label>
+                        <input type="text" id="author" name="author" required>
+            
+                        <label for="description">Description:</label>
+                        <textarea id="description" name="description" required></textarea>
+            
+                        <label for="language">Language:</label>
+                        <input type="text" id="language" name="language" required>
+            
+                        <label for="subject">Subject:</label>
+                        <input type="text" id="subject" name="subject" required>
+            
+                        <label for="pageNo">Page No:</label>
+                        <input type="text" id="pageNo" name="pageNo" required>
+            
+                        <div class="button-container">
+                            <input type="submit" value="Submit">
+                            <input type="button" value="Cancel">
+                        </div>
+                    </form>
+                </main>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function createTextFile() {
+            var bookId = document.getElementById("bookId").value;
+            var title = document.getElementById("title").value;
+            var author = document.getElementById("author").value;
+            var description = document.getElementById("description").value;
+            var language = document.getElementById("language").value;
+            var subject = document.getElementById("subject").value;
+            var pageNo = document.getElementById("pageNo").value;
+            
+            var content = "bookID : " + bookId + "\n" +
+                          "title : " + title + "\n" +
+                          "author : " + author + "\n" +
+                          "description : " + description + "\n" +
+                          "language : " + language + "\n" +
+                          "subject : " + subject + "\n" +
+                          "page : " + pageNo;
+            
+            var fileName = bookId + ".txt";
+            var blob = new Blob([content], {type: "text/plain;charset=utf-8"});
+            saveAs(blob, fileName);
+            
+            alert("Successful create: " + fileName);
+            return false; // prevent form submission
+        }
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+</body>
+</html>
