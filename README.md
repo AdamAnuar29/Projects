@@ -16,4 +16,6 @@
 5. XML to JSON
 - The program takes an XML file and parse it into a JSON file
 
+6. Learning Projects
+- This is my currect ongoing projects. These projects are the simple projects suggested by florinpop17 at his GitHub page https://github.com/florinpop17/app-ideas?tab=readme-ov-file. I aim to complete all of the projects, starting the beginner level up to the advanced level. This is to strengthen my understanding and showcase my ability to program simple applications.
 
