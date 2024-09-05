@@ -1,0 +1,158 @@
+{
+  "name": "3b55f45a-6f79-4f5a-a701-6b1e6047df64",
+  "displayName": "FAQ",
+  "testCaseConversationTurns": [ {
+    "userInput": {
+      "isWebhookEnabled": true,
+      "input": {
+        "text": {
+          "text": "hello"
+        },
+        "languageCode": "en"
+      }
+    },
+    "virtualAgentOutput": {
+      "triggeredIntent": {
+        "name": "Default Welcome Intent"
+      },
+      "currentPage": {
+        "name": "Start Page",
+        "flow": "Default Start Flow"
+      },
+      "textResponses": [ {
+        "text": [ "Hello. You need help finding books, library FAQ or Library help?" ]
+      } ],
+      "currentFlow": {
+        "name": "Default Start Flow"
+      }
+    }
+  }, {
+    "userInput": {
+      "isWebhookEnabled": true,
+      "input": {
+        "text": {
+          "text": "library FAQ"
+        },
+        "languageCode": "en"
+      }
+    },
+    "virtualAgentOutput": {
+      "triggeredIntent": {
+        "name": "library_faq"
+      },
+      "currentPage": {
+        "name": "FAQ Questions",
+        "flow": "Library FAQ"
+      },
+      "textResponses": [ {
+        "text": [ "Ask any FAQ questions. Say done when done." ]
+      } ],
+      "currentFlow": {
+        "name": "Library FAQ"
+      }
+    }
+  }, {
+    "userInput": {
+      "isWebhookEnabled": true,
+      "input": {
+        "text": {
+          "text": "um"
+        },
+        "languageCode": "en"
+      }
+    },
+    "virtualAgentOutput": {
+      "currentPage": {
+        "name": "FAQ Questions",
+        "flow": "Library FAQ"
+      },
+      "textResponses": [ {
+        "text": [ "Sorry, I didn't get that. Can you rephrase?" ],
+        "containAttemptedDataStoreInteractions": true
+      } ],
+      "currentFlow": {
+        "name": "Library FAQ"
+      }
+    }
+  }, {
+    "userInput": {
+      "isWebhookEnabled": true,
+      "input": {
+        "text": {
+          "text": "When does the library close"
+        },
+        "languageCode": "en"
+      }
+    },
+    "virtualAgentOutput": {
+      "currentPage": {
+        "name": "FAQ Questions",
+        "flow": "Library FAQ"
+      },
+      "textResponses": [ {
+        "text": [ "It is open 24 hours each day" ],
+        "containDataStoreFaqContent": true,
+        "containAttemptedDataStoreInteractions": true
+      } ],
+      "currentFlow": {
+        "name": "Library FAQ"
+      }
+    }
+  }, {
+    "userInput": {
+      "isWebhookEnabled": true,
+      "input": {
+        "text": {
+          "text": "im done please"
+        },
+        "languageCode": "en"
+      }
+    },
+    "virtualAgentOutput": {
+      "triggeredIntent": {
+        "name": "user.done"
+      },
+      "currentPage": {
+        "name": "Any other questions?",
+        "flow": "Library FAQ"
+      },
+      "textResponses": [ {
+        "text": [ "Do you have any other question?" ]
+      } ],
+      "currentFlow": {
+        "name": "Library FAQ"
+      }
+    }
+  }, {
+    "userInput": {
+      "isWebhookEnabled": true,
+      "input": {
+        "text": {
+          "text": "no"
+        },
+        "languageCode": "en"
+      }
+    },
+    "virtualAgentOutput": {
+      "triggeredIntent": {
+        "name": "user_negative"
+      },
+      "currentPage": {
+        "name": "End Session",
+        "flow": "Library FAQ"
+      },
+      "currentFlow": {
+        "name": "Library FAQ"
+      }
+    }
+  } ],
+  "creationTime": {
+    "seconds": 1714738047,
+    "nanos": 850429000
+  },
+  "testConfig": {
+    "flow": "Default Start Flow",
+    "page": "Start Page"
+  },
+  "languageCode": "en"
+}

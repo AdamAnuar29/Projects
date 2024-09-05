@@ -1,0 +1,46 @@
+{
+  "name": "9764511b-b113-491b-a7ae-b917eff25692",
+  "displayName": "Collect book ID",
+  "form": {
+    "parameters": [ {
+      "displayName": "bookID",
+      "required": true,
+      "entityType": "@sys.number-integer",
+      "fillBehavior": {
+        "initialPromptFulfillment": {
+        
+        },
+        "repromptEventHandlers": [ {
+          "event": "sys.no-match-1",
+          "triggerFulfillment": {
+            "messages": [ {
+              "text": {
+                "text": [ "Did not get that. Can you repeat the ID" ]
+              },
+              "languageCode": "en"
+            } ]
+          },
+          "name": "cfa026f8-bf7d-480d-91e9-1ae4aa008f6b"
+        } ]
+      },
+      "description": "Gets the book name"
+    } ]
+  },
+  "entryFulfillment": {
+    "messages": [ {
+      "text": {
+        "text": [ "Can I have the book ID?" ]
+      },
+      "languageCode": "en"
+    } ]
+  },
+  "transitionRoutes": [ {
+    "condition": "$page.params.status = \"FINAL\"",
+    "triggerFulfillment": {
+      "webhook": "LibraryWebhookHandler",
+      "tag": "bookIDChecker"
+    },
+    "targetPage": "Validate Book Name",
+    "name": "b7fae807-ce7c-4fc5-82ea-cf3614502723"
+  } ]
+}

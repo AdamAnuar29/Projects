@@ -1,0 +1,10 @@
+{
+  "name": "fe6ff2fc-4f4a-4244-8e60-3359b05264b0",
+  "displayName": "bookIDCheck",
+  "genericWebService": {
+    "uri": "https://us-central1-libraryai-407620.cloudfunctions.net/library_webhook"
+  },
+  "timeout": {
+    "seconds": 5
+  }
+}

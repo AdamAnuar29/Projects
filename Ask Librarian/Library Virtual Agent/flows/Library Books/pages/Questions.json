@@ -1,0 +1,40 @@
+{
+  "name": "f9dbd20b-67d1-4d5d-9b5c-7a34ab5631ef",
+  "displayName": "Questions",
+  "form": {
+  
+  },
+  "entryFulfillment": {
+    "messages": [ {
+      "text": {
+        "text": [ "To ask a question regarding a book, please specify the name of the book first then your question. If you are done asking questions, please type \"Done\"." ]
+      },
+      "languageCode": "en"
+    } ]
+  },
+  "transitionRoutes": [ {
+    "intent": "user.done",
+    "triggerFulfillment": {
+    
+    },
+    "targetPage": "Anything else?",
+    "name": "79200475-72d7-433c-b410-428177beb4ef"
+  } ],
+  "knowledgeConnectorSettings": {
+    "enabled": true,
+    "triggerFulfillment": {
+      "messages": [ {
+        "text": {
+          "text": [ "$request.knowledge.answers[0]" ]
+        },
+        "languageCode": "en"
+      } ]
+    },
+    "dataStoreConnections": [ {
+      "dataStoreType": "UNSTRUCTURED",
+      "dataStore": "projects/926922129488/locations/us/collections/default_collection/dataStores/draft-data_1714410036057",
+      "languageCode": "en",
+      "documentProcessingMode": "DOCUMENTS"
+    } ]
+  }
+}

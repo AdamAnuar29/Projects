@@ -1,0 +1,160 @@
+{
+  "name": "cccbac3c-1edd-4f2d-a356-859482da8fa1",
+  "displayName": "Help_desk",
+  "testCaseConversationTurns": [ {
+    "userInput": {
+      "isWebhookEnabled": true,
+      "input": {
+        "text": {
+          "text": "HI"
+        },
+        "languageCode": "en"
+      }
+    },
+    "virtualAgentOutput": {
+      "triggeredIntent": {
+        "name": "Default Welcome Intent"
+      },
+      "currentPage": {
+        "name": "Start Page",
+        "flow": "Default Start Flow"
+      },
+      "textResponses": [ {
+        "text": [ "Hello. You need help finding books, library FAQ or Library help?" ]
+      } ],
+      "currentFlow": {
+        "name": "Default Start Flow"
+      }
+    }
+  }, {
+    "userInput": {
+      "isWebhookEnabled": true,
+      "input": {
+        "text": {
+          "text": "I need library help"
+        },
+        "languageCode": "en"
+      }
+    },
+    "virtualAgentOutput": {
+      "triggeredIntent": {
+        "name": "library_help"
+      },
+      "currentPage": {
+        "name": "Collect Issue Problem",
+        "flow": "Library Help Desk"
+      },
+      "textResponses": [ {
+        "text": [ "Hello. Is your issue account related or login related?" ]
+      } ],
+      "currentFlow": {
+        "name": "Library Help Desk"
+      }
+    }
+  }, {
+    "userInput": {
+      "isWebhookEnabled": true,
+      "input": {
+        "text": {
+          "text": "account related please"
+        },
+        "languageCode": "en"
+      }
+    },
+    "virtualAgentOutput": {
+      "triggeredIntent": {
+        "name": "help_account"
+      },
+      "currentPage": {
+        "name": "Checking Issue",
+        "flow": "Library Help Desk"
+      },
+      "textResponses": [ {
+        "text": [ "Did you forget your password?" ]
+      } ],
+      "currentFlow": {
+        "name": "Library Help Desk"
+      }
+    }
+  }, {
+    "userInput": {
+      "isWebhookEnabled": true,
+      "input": {
+        "text": {
+          "text": "yes"
+        },
+        "languageCode": "en"
+      }
+    },
+    "virtualAgentOutput": {
+      "triggeredIntent": {
+        "name": "user_positive"
+      },
+      "currentPage": {
+        "name": "Password Reset",
+        "flow": "Library Help Desk"
+      },
+      "textResponses": [ {
+        "text": [ "Can I collect your email?" ]
+      } ],
+      "currentFlow": {
+        "name": "Library Help Desk"
+      }
+    }
+  }, {
+    "userInput": {
+      "isWebhookEnabled": true,
+      "input": {
+        "text": {
+          "text": "a@gmail.com"
+        },
+        "languageCode": "en"
+      }
+    },
+    "virtualAgentOutput": {
+      "currentPage": {
+        "name": "Anything Else?",
+        "flow": "Library Help Desk"
+      },
+      "textResponses": [ {
+        "text": [ "I have sent it to the administrator. You will get an email shortly." ]
+      }, {
+        "text": [ "Is there anything else that I can help with? If you want to ask another question, do not hesistate to ask." ]
+      } ],
+      "currentFlow": {
+        "name": "Library Help Desk"
+      }
+    }
+  }, {
+    "userInput": {
+      "isWebhookEnabled": true,
+      "input": {
+        "text": {
+          "text": "no, thank you"
+        },
+        "languageCode": "en"
+      }
+    },
+    "virtualAgentOutput": {
+      "triggeredIntent": {
+        "name": "user_negative"
+      },
+      "currentPage": {
+        "name": "End Session",
+        "flow": "Library Help Desk"
+      },
+      "currentFlow": {
+        "name": "Library Help Desk"
+      }
+    }
+  } ],
+  "creationTime": {
+    "seconds": 1714741706,
+    "nanos": 176807000
+  },
+  "testConfig": {
+    "flow": "Default Start Flow",
+    "page": "Start Page"
+  },
+  "languageCode": "en"
+}

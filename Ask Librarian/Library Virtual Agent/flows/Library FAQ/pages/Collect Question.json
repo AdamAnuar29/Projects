@@ -1,0 +1,15 @@
+{
+  "name": "48abd3ac-6b4e-4f4d-9895-f9c0daf5636f",
+  "displayName": "Collect Question",
+  "form": {
+  
+  },
+  "transitionRoutes": [ {
+    "condition": "$page.params.status = \"FINAL\"",
+    "triggerFulfillment": {
+    
+    },
+    "targetPage": "FAQ Questions",
+    "name": "80634da0-88fd-4a82-ab59-1d824622b57c"
+  } ]
+}

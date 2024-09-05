@@ -1,0 +1,160 @@
+{
+  "name": "a53ec887-fba1-4846-8a45-689b5b6405d8",
+  "displayName": "finding_book_true",
+  "testCaseConversationTurns": [ {
+    "userInput": {
+      "isWebhookEnabled": true,
+      "input": {
+        "text": {
+          "text": "hi"
+        },
+        "languageCode": "en"
+      }
+    },
+    "virtualAgentOutput": {
+      "triggeredIntent": {
+        "name": "Default Welcome Intent"
+      },
+      "currentPage": {
+        "name": "Start Page",
+        "flow": "Default Start Flow"
+      },
+      "textResponses": [ {
+        "text": [ "Hello. You need help finding books, library FAQ or Library help?" ]
+      } ],
+      "currentFlow": {
+        "name": "Default Start Flow"
+      }
+    }
+  }, {
+    "userInput": {
+      "isWebhookEnabled": true,
+      "input": {
+        "text": {
+          "text": "finding books"
+        },
+        "languageCode": "en"
+      }
+    },
+    "virtualAgentOutput": {
+      "triggeredIntent": {
+        "name": "library_book"
+      },
+      "currentPage": {
+        "name": "Collect book ID",
+        "flow": "Library Books"
+      },
+      "textResponses": [ {
+        "text": [ "Can I have the book ID?" ]
+      } ],
+      "currentFlow": {
+        "name": "Library Books"
+      }
+    }
+  }, {
+    "userInput": {
+      "isWebhookEnabled": true,
+      "input": {
+        "text": {
+          "text": "200001"
+        },
+        "languageCode": "en"
+      }
+    },
+    "virtualAgentOutput": {
+      "currentPage": {
+        "name": "Questions",
+        "flow": "Library Books"
+      },
+      "textResponses": [ {
+        "text": [ "The book you are searching for is unavailable." ]
+      }, {
+        "text": [ "To ask a question regarding a book, please specify the name of the book first then your question. If you are done asking questions, please type \"Done\"." ]
+      } ],
+      "currentFlow": {
+        "name": "Library Books"
+      }
+    }
+  }, {
+    "userInput": {
+      "isWebhookEnabled": true,
+      "input": {
+        "text": {
+          "text": "who is the author"
+        },
+        "languageCode": "en"
+      }
+    },
+    "virtualAgentOutput": {
+      "currentPage": {
+        "name": "Questions",
+        "flow": "Library Books"
+      },
+      "textResponses": [ {
+        "text": [ "The author of the book with ID 200001 is J.Watson." ],
+        "containAiGeneratedContent": true,
+        "containDataStoreContent": true,
+        "containAttemptedDataStoreInteractions": true
+      } ],
+      "currentFlow": {
+        "name": "Library Books"
+      }
+    }
+  }, {
+    "userInput": {
+      "isWebhookEnabled": true,
+      "input": {
+        "text": {
+          "text": "done"
+        },
+        "languageCode": "en"
+      }
+    },
+    "virtualAgentOutput": {
+      "triggeredIntent": {
+        "name": "user.done"
+      },
+      "currentPage": {
+        "name": "Anything else?",
+        "flow": "Library Books"
+      },
+      "textResponses": [ {
+        "text": [ "Is there anything else you need? Do you want to find the availability of another book or different issue?" ]
+      } ],
+      "currentFlow": {
+        "name": "Library Books"
+      }
+    }
+  }, {
+    "userInput": {
+      "isWebhookEnabled": true,
+      "input": {
+        "text": {
+          "text": "nope"
+        },
+        "languageCode": "en"
+      }
+    },
+    "virtualAgentOutput": {
+      "triggeredIntent": {
+        "name": "user_negative"
+      },
+      "currentPage": {
+        "name": "End Session",
+        "flow": "Library Books"
+      },
+      "currentFlow": {
+        "name": "Library Books"
+      }
+    }
+  } ],
+  "creationTime": {
+    "seconds": 1714607532,
+    "nanos": 245419000
+  },
+  "testConfig": {
+    "flow": "Default Start Flow",
+    "page": "Start Page"
+  },
+  "languageCode": "en"
+}

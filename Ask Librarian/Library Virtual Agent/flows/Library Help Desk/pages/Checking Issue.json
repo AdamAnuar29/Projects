@@ -1,0 +1,36 @@
+{
+  "name": "d8dbd0c3-ddf7-42dd-8389-b6c7ce36fc80",
+  "displayName": "Checking Issue",
+  "form": {
+  
+  },
+  "transitionRoutes": [ {
+    "intent": "user_positive",
+    "condition": "$session.params.account_issue = \"true\" OR $session.params.login_issue = \"true\"",
+    "triggerFulfillment": {
+      "setParameterActions": [ {
+        "parameter": "password_forgot",
+        "value": "true"
+      } ]
+    },
+    "targetPage": "Password Issue",
+    "name": "f449c4ba-ba10-41e1-bc0f-b9adb49628a1"
+  }, {
+    "intent": "user_negative",
+    "condition": "$session.params.account_issue = \"true\" OR $session.params.login_issue = \"true\"",
+    "triggerFulfillment": {
+      "messages": [ {
+        "text": {
+          "text": [ "It would seem that you have a more complex issue with your account. Please contact the library staff for further help." ]
+        },
+        "languageCode": "en"
+      } ],
+      "setParameterActions": [ {
+        "parameter": "password_forgot",
+        "value": "false"
+      } ]
+    },
+    "targetPage": "Anything Else?",
+    "name": "be4edefd-083c-4c82-bb00-7b4237bdb806"
+  } ]
+}

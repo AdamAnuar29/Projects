@@ -1,0 +1,65 @@
+{
+  "name": "6760a77f-f7fe-468c-bba9-dcd2c454dac1",
+  "displayName": "Validate Book Name",
+  "form": {
+  
+  },
+  "transitionRoutes": [ {
+    "condition": "$session.params.book_availability = \"true\"",
+    "triggerFulfillment": {
+      "messages": [ {
+        "text": {
+          "text": [ "The book you are searching is available" ]
+        },
+        "languageCode": "en"
+      } ]
+    },
+    "targetPage": "Questions",
+    "name": "4bd2db1c-17e3-4d20-806d-33cd8c96a865"
+  }, {
+    "condition": "$session.params.book_availability = \"false\"",
+    "triggerFulfillment": {
+      "messages": [ {
+        "text": {
+          "text": [ "The book you are searching for is unavailable." ]
+        },
+        "languageCode": "en"
+      } ]
+    },
+    "targetPage": "Questions",
+    "name": "be3423db-38fe-4fee-bba2-1e9d7aed4bf7"
+  }, {
+    "condition": "$session.params.book_error = \"true\"",
+    "triggerFulfillment": {
+      "messages": [ {
+        "text": {
+          "text": [ "The book code is not in the system." ]
+        },
+        "languageCode": "en"
+      } ],
+      "setParameterActions": [ {
+        "parameter": "book_error",
+        "value": "false"
+      } ]
+    },
+    "targetPage": "Anything else?",
+    "name": "a5fe1813-3f8c-42a1-85cd-407c736987bb"
+  } ],
+  "knowledgeConnectorSettings": {
+    "enabled": true,
+    "triggerFulfillment": {
+      "messages": [ {
+        "text": {
+          "text": [ "$request.knowledge.answers[0]" ]
+        },
+        "languageCode": "en"
+      } ]
+    },
+    "dataStoreConnections": [ {
+      "dataStoreType": "UNSTRUCTURED",
+      "dataStore": "projects/926922129488/locations/us/collections/default_collection/dataStores/draft-data_1714410036057",
+      "languageCode": "en",
+      "documentProcessingMode": "DOCUMENTS"
+    } ]
+  }
+}

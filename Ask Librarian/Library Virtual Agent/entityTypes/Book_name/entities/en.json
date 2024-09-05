@@ -1,0 +1,7 @@
+{
+  "entities": [ {
+    "value": "@sys.any",
+    "synonyms": [ "@sys.any" ],
+    "languageCode": "en"
+  } ]
+}

@@ -1,0 +1,41 @@
+{
+  "name": "f97e5fc7-d93e-4951-a420-bb24d2b334d0",
+  "displayName": "FAQ Questions",
+  "form": {
+  
+  },
+  "entryFulfillment": {
+    "messages": [ {
+      "text": {
+        "text": [ "FAQ Questions\n1. When does the library close?\n2. How can I borrow a book?\n3. Can I access databases from home?\n4. Is printing \u0026 photocopying available in the library?\n5. Where do I return books?\nWhen you are done, please type done to complete." ]
+      },
+      "languageCode": "en"
+    } ]
+  },
+  "transitionRoutes": [ {
+    "intent": "user.done",
+    "triggerFulfillment": {
+    
+    },
+    "targetPage": "Any other questions?",
+    "name": "c77b7634-d2f8-4111-af9b-e9d3fe19a144"
+  } ],
+  "knowledgeConnectorSettings": {
+    "enabled": true,
+    "triggerFulfillment": {
+      "messages": [ {
+        "text": {
+          "text": [ "$request.knowledge.answers[0]" ]
+        },
+        "languageCode": "en"
+      } ]
+    },
+    "dataStoreConnections": [ {
+      "dataStoreType": "STRUCTURED",
+      "dataStore": "projects/926922129488/locations/us/collections/default_collection/dataStores/library-faq_1714507911415",
+      "languageCode": "en",
+      "documentProcessingMode": "DOCUMENTS"
+    } ]
+  },
+  "description": "Respond quesion"
+}

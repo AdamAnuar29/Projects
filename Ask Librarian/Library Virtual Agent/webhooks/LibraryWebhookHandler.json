@@ -1,0 +1,10 @@
+{
+  "name": "19af90f1-2909-4f5e-9447-4c45e9f13f97",
+  "displayName": "LibraryWebhookHandler",
+  "genericWebService": {
+    "uri": "https://us-central1-libraryai-407620.cloudfunctions.net/library_webhook"
+  },
+  "timeout": {
+    "seconds": 5
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "name": "eba96043-faf8-4131-887f-e21bf8ece466",
+  "displayName": "Collect Issue Problem",
+  "form": {
+  
+  },
+  "entryFulfillment": {
+    "messages": [ {
+      "text": {
+        "text": [ "Hello. Is your issue account related, login related or something else?" ]
+      },
+      "languageCode": "en"
+    } ]
+  },
+  "transitionRoutes": [ {
+    "intent": "help_account",
+    "triggerFulfillment": {
+      "messages": [ {
+        "text": {
+          "text": [ "Did you forget your password?" ]
+        },
+        "languageCode": "en"
+      } ],
+      "setParameterActions": [ {
+        "parameter": "account_issue",
+        "value": "true"
+      } ]
+    },
+    "targetPage": "Checking Issue",
+    "name": "5fbf88d6-a724-48e0-9d20-709910a5c477"
+  }, {
+    "intent": "help_login",
+    "triggerFulfillment": {
+      "messages": [ {
+        "text": {
+          "text": [ "Is the issue password related?" ]
+        },
+        "languageCode": "en"
+      } ],
+      "setParameterActions": [ {
+        "parameter": "login_issue",
+        "value": "true"
+      } ]
+    },
+    "targetPage": "Checking Issue",
+    "name": "2cc26c36-4b3c-4a6a-9b2e-79c71860f2db"
+  }, {
+    "intent": "Different_Issue",
+    "triggerFulfillment": {
+      "setParameterActions": [ {
+        "parameter": "different_issue",
+        "value": "true"
+      } ]
+    },
+    "targetPage": "Different Issue",
+    "name": "97d4fbdd-6aba-4aac-9b0b-0335514ca67f"
+  } ]
+}

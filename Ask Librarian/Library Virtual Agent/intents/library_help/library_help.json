@@ -1,0 +1,7 @@
+{
+  "name": "908b1106-7c6c-4b43-9816-d7eaed220374",
+  "displayName": "library_help",
+  "priority": 500000,
+  "description": "Anything related to the library system",
+  "numTrainingPhrases": 30
+}

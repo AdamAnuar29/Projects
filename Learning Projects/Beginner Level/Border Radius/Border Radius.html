@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style>
+            body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+            #border-area1 {
+                border-radius: 25px 25px 25px 25px;
+                background: #73AD21;
+                padding: 20px; 
+                width: 200px;
+                height: 200px;  
+                }
+            
+            #Slider-area{
+                margin: 15px;
+            }
+        </style>
+        <title> Border Radius</title>
+    </head>
+    <body>
+        <div id="border-area1"></div>
+        <div id="Slider-area">
+            <label for="Top-left"> Top left border radius : <span id="TLBR">25</span> </label>
+            <input type="range" min="0" max="100" value="25" id="Top-left"><br>
+
+            <label for="Top-right"> Top right border radius : <span id="TRBR">25</span> </label>
+            <input type="range" min="0" max="100" value="25" id="Top-right"><br>
+
+            <label for="Bottom-left"> Bottom left border radius : <span id="BLBR">25</span> </label>
+            <input type="range" min="0" max="100" value="25" id="Bottom-left"> <br>
+
+            <label for="Bottom-right"> Bottom right border radius : <span id="BRBR">25</span></label>
+            <input type="range" min="0" max="100" value="25" id="Bottom-right">
+        </div>
+        <button id="copy-button" onclick="CopyFunction()">Copy CSS to clipboard</button>
+        
+
+
+        <script>
+            const Border_Area = document.getElementById('border-area1');
+            const TLRR = document.getElementById('Top-left');
+            const TLV = document.getElementById('TLBR');
+            const TRRR = document.getElementById('Top-right');
+            const TRV = document.getElementById('TRBR');
+            const BLRR = document.getElementById('Bottom-left');
+            const BLV = document.getElementById('BLBR');
+            const BRRR = document.getElementById('Bottom-right');
+            const BRV = document.getElementById('BRBR');
+
+            TLRR.addEventListener('input', function(){
+                const radiusTL = TLRR.value;
+                Border_Area.style.borderTopLeftRadius = radiusTL + 'px';
+                TLV.textContent = radiusTL;
+            })
+
+            TRRR.addEventListener('input', function(){
+                const radiusTR = TRRR.value;
+                Border_Area.style.borderTopRightRadius = radiusTR + 'px';
+                TRV.textContent = radiusTR;
+            })
+
+            BLRR.addEventListener('input', function(){
+                const radiusBL = BLRR.value;
+                Border_Area.style.borderBottomLeftRadius = radiusBL + 'px';
+                BLV.textContent = radiusBL;
+            })
+
+            BRRR.addEventListener('input', function(){
+                const radiusBR = BRRR.value;
+                Border_Area.style.borderBottomRightRadius = radiusBR + 'px';
+                BRV.textContent = radiusBR;
+            })
+
+            function CopyFunction() {
+
+                const radiusTL = TLRR.value;
+                const radiusTR = TRRR.value;
+                const radiusBL = BLRR.value;
+                const radiusBR = BRRR.value;
+
+                const cssCode = 
+               `#border-area1 { 
+                border-radius: ${radiusTL}px ${radiusTR}px ${radiusBR}px ${radiusBL}px;
+                background: #73AD21;
+                padding: 20px; 
+                width: 200px;
+                height: 200px;  
+                }`
+                
+                navigator.clipboard.writeText(cssCode);
+                alert("Copied the text");
+            }
+
+
+        </script>
+
+    </body>
+
+    
+</html>

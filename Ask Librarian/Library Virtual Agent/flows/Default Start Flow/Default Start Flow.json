@@ -1,0 +1,91 @@
+{
+  "name": "00000000-0000-0000-0000-000000000000",
+  "displayName": "Default Start Flow",
+  "description": "A start flow created along with the agent",
+  "transitionRoutes": [ {
+    "intent": "Default Welcome Intent",
+    "triggerFulfillment": {
+      "messages": [ {
+        "text": {
+          "text": [ "Hello, welcome to the Library Virtual Agent. You need help finding books, library FAQ or Library help?" ]
+        },
+        "languageCode": "en"
+      } ]
+    },
+    "name": "543da2ab-49f1-42fa-97ff-9d8449dea0f1"
+  }, {
+    "intent": "library_book",
+    "triggerFulfillment": {
+    
+    },
+    "targetFlow": "Library Books",
+    "name": "17d1d6b7-6ef9-4218-9dd5-9b9b9b9366b8",
+    "description": "Goes into a book flow"
+  }, {
+    "intent": "library_faq",
+    "triggerFulfillment": {
+    
+    },
+    "targetFlow": "Library FAQ",
+    "name": "a4d52869-6fd7-4332-b94e-8bd5150ca7a2"
+  }, {
+    "intent": "library_help",
+    "triggerFulfillment": {
+    
+    },
+    "targetFlow": "Library Help Desk",
+    "name": "107eda6e-2313-4979-80b3-c3f2678c7c19"
+  }, {
+    "intent": "user.goodbye",
+    "triggerFulfillment": {
+      "messages": [ {
+        "text": {
+          "text": [ "Thank you for using the Library Virtual Agent. Have a great day!" ]
+        },
+        "languageCode": "en"
+      } ]
+    },
+    "targetPage": "End Session",
+    "name": "b4d7e2fd-145c-4fab-b3ca-39f95c06358f",
+    "description": "Ends when user says goodbye"
+  }, {
+    "intent": "user_negative",
+    "triggerFulfillment": {
+      "messages": [ {
+        "text": {
+          "text": [ "Thank you for using the Library Virtual Agent. Have a great day!" ]
+        },
+        "languageCode": "en"
+      } ]
+    },
+    "targetPage": "End Session",
+    "name": "e2751d66-c66a-4e92-b7ae-b4b94269ff69"
+  } ],
+  "eventHandlers": [ {
+    "event": "sys.no-match-default",
+    "triggerFulfillment": {
+      "messages": [ {
+        "text": {
+          "text": [ "I didn't get that. Can you say it again?", "I missed what you said. What was that?", "Sorry, could you say that again?", "Sorry, can you say that again?", "Can you say that again?", "Sorry, I didn't get that. Can you rephrase?", "Sorry, what was that?", "One more time?", "What was that?", "Say that one more time?", "I didn't get that. Can you repeat?", "I missed that, say that again?" ]
+        },
+        "languageCode": "en"
+      } ]
+    },
+    "name": "a9e1c933-4fe4-4b70-af51-b5ad4ebb870a"
+  }, {
+    "event": "sys.no-input-default",
+    "triggerFulfillment": {
+      "messages": [ {
+        "text": {
+          "text": [ "I didn't get that. Can you say it again?", "I missed what you said. What was that?", "Sorry, could you say that again?", "Sorry, can you say that again?", "Can you say that again?", "Sorry, I didn't get that. Can you rephrase?", "Sorry, what was that?", "One more time?", "What was that?", "Say that one more time?", "I didn't get that. Can you repeat?", "I missed that, say that again?" ]
+        },
+        "languageCode": "en"
+      } ]
+    },
+    "name": "bf1a5dd1-910e-4cb1-a824-34b55fec81aa"
+  } ],
+  "nluSettings": {
+    "modelType": "MODEL_TYPE_ADVANCED",
+    "classificationThreshold": 0.30000001
+  }
+}
